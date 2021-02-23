@@ -5,13 +5,16 @@ public class EmpWage {
 	public static final int IS_PART_TIME = 2;
 	public static final int EMP_WAGE_PER_HR = 20;
 	public static final int DAYS_IN_MONTH = 20;
+	public static final int MAX_HRS = 50;
 
 	//Variable
 	static int totalEmpWage;
 
 	public static int calcWage(){
+		int totalWorkingDays = 1;
+		int totalEmpHrs = 0;
 
-		for (int day = 1; day <= DAYS_IN_MONTH; day++) {
+		while ( totalWorkingDays != DAYS_IN_MONTH && totalEmpHrs <= MAX_HRS ) {
 
 			//Variables
 			int empHrs, empWage;
@@ -26,7 +29,9 @@ public class EmpWage {
 			}
 			empWage = empHrs * EMP_WAGE_PER_HR;
 			totalEmpWage += empWage;
-			System.out.println("Employee day " + day + " Wage : "+empWage);
+			totalWorkingDays ++;
+			totalEmpHrs += empHrs;
+			System.out.println("Employee day " + totalWorkingDays + " Wage : "+empWage);
 		}return totalEmpWage;
 	}
 
