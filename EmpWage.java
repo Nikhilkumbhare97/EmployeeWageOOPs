@@ -4,30 +4,36 @@ public class EmpWage {
 	public static final int IS_FULL_TIME = 1;
 	public static final int IS_PART_TIME = 2;
 	public static final int EMP_WAGE_PER_HR = 20;
+	public static final int DAYS_IN_MONTH = 20;
 
-	public static void calcWage(){
+	//Variable
+	static int totalEmpWage;
 
-		//Variables
-		int empHrs, empWage;
+	public static int calcWage(){
 
-		int empCheck =(int) Math.floor(Math.random() * 10) % 3;
-		if (empCheck == IS_FULL_TIME) {
-			System.out.println("Employee is Full Time");
-			empHrs = 8;
-		}else if (empCheck == IS_PART_TIME) {
-			System.out.println("Employee is Part Time");
-			empHrs = 4;
-		}else {
-			System.out.println("Employee is Absent");
-			empHrs = 0;
-		}
-		empWage = empHrs * EMP_WAGE_PER_HR;
-		System.out.println("Employee Daily Wage : "+empWage);
+		for (int day = 1; day <= DAYS_IN_MONTH; day++) {
+
+			//Variables
+			int empHrs, empWage;
+
+			int empCheck =(int) Math.floor(Math.random() * 10) % 3;
+			if (empCheck == IS_FULL_TIME) {
+				empHrs = 8;
+			}else if (empCheck == IS_PART_TIME) {
+				empHrs = 4;
+			}else {
+				empHrs = 0;
+			}
+			empWage = empHrs * EMP_WAGE_PER_HR;
+			totalEmpWage += empWage;
+			System.out.println("Employee day " + day + " Wage : "+empWage);
+		}return totalEmpWage;
 	}
 
 	public static void main(String[] args){
 
 		System.out.println("Welcome to Employee Wage Computation Program");
  		calcWage();
+		System.out.println("Total Employee Wage : " +totalEmpWage);
 	}
 }
