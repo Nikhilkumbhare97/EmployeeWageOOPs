@@ -3,41 +3,78 @@ public class EmpWage {
 	//Constant
 	public static final int IS_FULL_TIME = 1;
 	public static final int IS_PART_TIME = 2;
-	public static final int EMP_WAGE_PER_HR = 20;
-	public static final int DAYS_IN_MONTH = 20;
-	public static final int MAX_HRS = 50;
 
-	public static int computeWage(){
+	//Variables
+	private final String companyName;
+	private final int empWagePerHr;
+	private final int daysInMonth;
+	private final int maxHrs;
+	private final int empHrsFullTime;
+	private final int empHrsPartTime;
+	private int totalEmpWage;
+
+
+	public EmpWage(String companyName, int empWagePerHr, int daysInMonth, int maxHrs, int empHrsFullTime, int empHrsPartTime) {
+
+		this.companyName = companyName;
+		this.empWagePerHr = empWagePerHr;
+		this.daysInMonth = daysInMonth;
+		this.maxHrs = maxHrs;
+		this.empHrsFullTime = empHrsFullTime;
+		this.empHrsPartTime = empHrsPartTime;
+
+	}
+
+	public String toString(){
+		return "Total Wage of: " + companyName + " Employee is: " + totalEmpWage ;
+	}
+
+	public void computeWage() {
 
 		//Variables
 		int totalWorkingDays = 0;
 		int totalEmpHrs = 0;
-		int empHrs =0;
+		int empHrs = 0;
+		int empWage = 0;
 
 		//Computation
-		while ( totalWorkingDays < DAYS_IN_MONTH && totalEmpHrs <= MAX_HRS ) {
+		while ( totalWorkingDays < daysInMonth && totalEmpHrs <= maxHrs ) {
 
 			int empCheck =(int) Math.floor(Math.random() * 10) % 3;
 			if (empCheck == IS_FULL_TIME) {
-				empHrs = 8;
+				empHrs = empHrsFullTime;
 			}else if (empCheck == IS_PART_TIME) {
-				empHrs = 4;
+				empHrs = empHrsPartTime;
 			}else {
 				empHrs = 0;
 			}
 			totalWorkingDays ++;
-			int empWage = empHrs * EMP_WAGE_PER_HR;
+			empWage = empHrs * empWagePerHr;
 			totalEmpHrs += empHrs;
-			System.out.println("Employee day : " + totalWorkingDays + " Emp Hr : " + empHrs + " Wage : "+empWage);
+			totalEmpWage += empWage;
+			System.out.println("Employee day: " + totalWorkingDays + " Emp Hr: " + empHrs + " Wage: "+empWage);
 		}
-		int totalEmpWage = totalEmpHrs * EMP_WAGE_PER_HR;
-		System.out.println("Total Employee Wage : " +totalEmpWage);
-		return totalEmpWage;
+
 	}
 
 	public static void main(String[] args){
 
 		System.out.println("Welcome to Employee Wage Computation Program");
- 		computeWage();
+ 		EmpWage Dmart = new EmpWage("Dmart", 20, 10, 50, 10, 5);
+		EmpWage BigBazaar = new EmpWage("BigBazaar", 25, 14, 40, 12, 6);
+		EmpWage VishalMegaMart = new EmpWage("VishalMegaMart", 20, 12, 40, 8, 4);
+
+		System.out.println("Employee of Dmart");
+		Dmart.computeWage();
+		System.out.println(Dmart);
+
+		System.out.println("Employee of BigBazaar");
+		BigBazaar.computeWage();
+		System.out.println(BigBazaar);
+
+		System.out.println("Employee of Vishal Mega Mart");
+		VishalMegaMart.computeWage();
+		System.out.println(VishalMegaMart);
+
 	}
 }
