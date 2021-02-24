@@ -10,7 +10,7 @@ public class EmpWage {
 	//Variable
 	static int totalEmpWage;
 
-	public static int calcWage(){
+	static int calcWage(){
 		int totalWorkingDays = 1;
 		int totalEmpHrs = 0;
 
@@ -29,9 +29,9 @@ public class EmpWage {
 			}
 			empWage = empHrs * EMP_WAGE_PER_HR;
 			totalEmpWage += empWage;
-			totalWorkingDays ++;
 			totalEmpHrs += empHrs;
 			System.out.println("Employee day " + totalWorkingDays + " Wage : "+empWage);
+			totalWorkingDays ++;
 		}return totalEmpWage;
 	}
 
