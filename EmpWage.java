@@ -88,6 +88,10 @@ public class EmpWage implements IComputeEmpWage{
 		return totalEmpHrs * companyEmpWage.empWagePerHr;
 	}
 
+	public int getTotalWage(String companyName) {
+		return companyToEmpWageMap.get(companyName).totalEmpWage;
+	}
+
 	public static void main(String[] args){
 
 		System.out.println("Welcome to Employee Wage Computation Program");
@@ -98,5 +102,8 @@ public class EmpWage implements IComputeEmpWage{
 			empwage.addCompanyWage("BigBazaar", 25, 14, 40);
 			empwage.addCompanyWage("VishalMegaMart", 20, 12, 40);
 			empwage.computeWage();
+			System.out.println("Total Wage for Dmart : "+empwage.getTotalWage("Dmart"));
+			System.out.println("Total Wage for BigBazaar : "+empwage.getTotalWage("BigBazaar"));
+			System.out.println("Total Wage for VishalMegaMart : "+empwage.getTotalWage("VishalMegaMart"));
 	}
 }
