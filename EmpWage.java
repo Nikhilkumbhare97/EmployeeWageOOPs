@@ -39,14 +39,17 @@ public class EmpWage implements IComputeEmpWage{
 
 	private int numOfCompany = 0;
 	private ArrayList<CompanyEmpWage> companyEmpWageList;
+	private Map<String,CompanyEmpWage> companyToEmpWageMap;
 
 	public EmpWage() {
 		companyEmpWageList = new ArrayList<>();
+		companyToEmpWageMap = new HashMap<>();
 	}
 
 	public void addCompanyWage(String companyName, int empWagePerHr, int daysInMonth, int maxHrs) {
 		CompanyEmpWage companyEmpWage = new CompanyEmpWage(companyName, empWagePerHr, daysInMonth, maxHrs);
 		companyEmpWageList.add(companyEmpWage);
+		companyToEmpWageMap.put(companyName, companyEmpWage);
 	}
 
 	public void computeWage() {
@@ -55,7 +58,6 @@ public class EmpWage implements IComputeEmpWage{
 			companyEmpWage.setTotalEmpWage(this.computeWage(companyEmpWage));
 			System.out.println(companyEmpWage);
 		}
-		System.out.println(companyEmpWageList);
 	}
 
 	public int computeWage(CompanyEmpWage companyEmpWage){
@@ -80,7 +82,7 @@ public class EmpWage implements IComputeEmpWage{
 			totalWorkingDays ++;
 			empWage = empHrs * companyEmpWage.empWagePerHr;
 			totalEmpHrs += empHrs;
-			System.out.println("Employee day: " + totalWorkingDays + " Emp Hr: " + empHrs);
+			System.out.println("Employee day: " + totalWorkingDays + " Emp Hr: " + empHrs + " Wage: "+empWage);
 			System.out.println("Daily Wage of Employee is: " +empWage);
 		}
 		return totalEmpHrs * companyEmpWage.empWagePerHr;
