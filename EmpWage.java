@@ -25,10 +25,6 @@ public class EmpWage {
 
 	}
 
-	public String toString(){
-		return "Total Wage of: " + companyName + " Employee is: " + totalEmpWage ;
-	}
-
 	public void computeWage() {
 
 		//Variables
@@ -56,6 +52,12 @@ public class EmpWage {
 		}
 
 	}
+
+	public String toString(){
+		return "Total Emp Wage for Company: " + companyName + " is: " + totalEmpWage ;
+	}
+
+
 
 	public static void main(String[] args){
 
